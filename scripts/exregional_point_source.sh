@@ -110,6 +110,8 @@ if [ ! -s "${DATA}/pt-${yyyymmddhh}.nc" ]; then
   cp_vrfy ${HOMEdir}/sorc/AQM-utils/python_utils/stack-pt-merge.py stack-pt-merge.py
   python3 stack-pt-merge.py -s ${yyyymmddhh} -n ${nstep} -conus ${PT_SRC_CONUS} -hi ${PT_SRC_HI} -ak ${PT_SRC_AK}
 
+  cp_vrfy ${DATA}/pt-${yyyymmddhh}.nc ${INPUT_DATA}/PT.nc 
+
   if [ ! -s "${DATA}/pt-${yyyymmddhh}.nc" ]; then
     print_err_msg_exit "\
 The point source file \"pt-${yyyymmddhh}.nc\" was not generated."
@@ -148,11 +150,11 @@ mkdir_vrfy -p "${DATA}/PT"
 #
 #-----------------------------------------------------------------------
 #
-PREP_STEP
-eval ${RUN_CMD_AQM} ${EXECdir}/decomp-ptemis-mpi ${REDIRECT_OUT_ERR} || \
-print_err_msg_exit "\
-Call to execute PT_SOURCE for Online-CMAQ failed."
-POST_STEP
+# PREP_STEP
+# eval ${RUN_CMD_AQM} ${EXECdir}/decomp-ptemis-mpi ${REDIRECT_OUT_ERR} || \
+# print_err_msg_exit "\
+# Call to execute PT_SOURCE for Online-CMAQ failed."
+# POST_STEP
 
 #
 #-----------------------------------------------------------------------
@@ -161,7 +163,7 @@ POST_STEP
 #
 #-----------------------------------------------------------------------
 #
-mv_vrfy "${DATA}/PT" ${INPUT_DATA}
+#mv_vrfy "${DATA}/PT" ${INPUT_DATA}
 
 #
 #-----------------------------------------------------------------------
